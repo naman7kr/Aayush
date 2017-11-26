@@ -18,6 +18,7 @@
             android:layout_height="64dp"
             android:layout_margin="16dp"
             android:id="@+id/include_main_nav_drawer_avatar"
+            android:src="@mipmap/ic_launcher"
             />
         <TextView
             android:layout_width="wrap_content"

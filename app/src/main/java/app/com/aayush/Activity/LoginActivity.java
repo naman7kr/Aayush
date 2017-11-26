@@ -9,7 +9,7 @@ import app.com.aayush.R;
  * Created by Stan on 11/26/2017.
  */
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseAuthenticatedActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -9,6 +9,10 @@ public class User {
     private boolean hasPassword;
     private String email;
     private int id;
+    public User()
+    {
+        isLoggedIn=true;
+    }
 
     public void setUserName(String userName) {
         this.userName = userName;
