@@ -15,6 +15,9 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import app.com.aayush.Activity.MainActivity;
 import app.com.aayush.R;
 import app.com.aayush.Views.CardAdapter;
@@ -23,16 +26,19 @@ public class HomeFragment extends BaseFragment implements TabLayout.OnTabSelecte
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private View view;
-    private static LinearLayout linearLayout;
-    static ImageView cardType;
-    static ImageView cardselectToggle;
+    private  LinearLayout linearLayout;
+    private ImageView cardType;
+    private ImageView cardselectToggle;
     private MainActivity mainActivity;
+    private List<Integer> cardTypeImg=new ArrayList<>();
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_home,container,false);
         this.view=view;
+        getCardTypeImages();
+
         mainActivity= (MainActivity) getActivity();
         tabLayout=view.findViewById(R.id.card_tablayout);
         viewPager=view.findViewById(R.id.card_viewpager);
@@ -47,27 +53,49 @@ public class HomeFragment extends BaseFragment implements TabLayout.OnTabSelecte
             cardselectToggle=linearLayout.findViewById(R.id.card_togglebutton);
             TabLayout.Tab tab = tabLayout.getTabAt(i);
             if(tab.isSelected())
+            {
                 cardselectToggle.setImageResource(R.mipmap.ic_toggle_button_on);
+                cardType.setElevation(240);
+                cardType.setScaleX((float) 1.3);
+                cardType.setScaleY((float) 1.3);
+            }
             else
                 cardselectToggle.setImageResource(R.mipmap.ic_toggle_button_off);
             Log.e("lol","wtf");
-            cardType.setImageResource(R.mipmap.ic_launcher);
+            cardType.setImageResource(cardTypeImg.get(i));
             tab.setCustomView(linearLayout);
         }
         tabLayout.addOnTabSelectedListener(this);
+
         return view;
+    }
+
+    private void getCardTypeImages() {
+        int img[]={R.mipmap.ic_launcher_round,R.drawable.ic_water};
+        for(int i=0;i<img.length;i++)
+        {
+            cardTypeImg.add(img[i]);
+        }
     }
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
        cardselectToggle=tab.getCustomView().findViewById(R.id.card_togglebutton);
        cardselectToggle.setImageResource(R.mipmap.ic_toggle_button_on);
+       cardType = tab.getCustomView().findViewById(R.id.card_typeimg);
+       cardType.setElevation(240);
+       cardType.setScaleX((float) 1.3);
+       cardType.setScaleY((float) 1.3);
     }
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
         cardselectToggle=tab.getCustomView().findViewById(R.id.card_togglebutton);
         cardselectToggle.setImageResource(R.mipmap.ic_toggle_button_off);
+        cardType = tab.getCustomView().findViewById(R.id.card_typeimg);
+        cardType.setElevation(240);
+        cardType.setScaleX((float) 1);
+        cardType.setScaleY((float) 1);
     }
 
     @Override

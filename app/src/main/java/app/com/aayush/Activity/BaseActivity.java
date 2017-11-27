@@ -12,6 +12,7 @@ import app.com.aayush.Infrastructure.AayushApplication;
 import app.com.aayush.R;
 import app.com.aayush.Views.NavDrawer;
 import android.util.DisplayMetrics;
+import android.widget.Toast;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -25,6 +26,7 @@ public class BaseActivity extends AppCompatActivity {
         application=(AayushApplication)getApplication();
         DisplayMetrics metrics=getResources().getDisplayMetrics();
         isTablet=(metrics.widthPixels/metrics.density)>=600;
+        Toast.makeText(getApplicationContext(),"Tab",Toast.LENGTH_SHORT).show();
     }
     public AayushApplication getYoraApplication()
     {

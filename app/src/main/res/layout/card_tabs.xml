@@ -6,16 +6,17 @@
     android:orientation="vertical"
     android:gravity="center"
     >
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher"
         android:id="@+id/card_typeimg"
+
         />
     <ImageView
         android:layout_width="15dp"
         android:layout_height="15dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="6dp"
         android:src="@mipmap/ic_toggle_button_on"
         android:id="@+id/card_togglebutton"
         />
