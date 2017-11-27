@@ -52,7 +52,8 @@
             android:id="@+id/card_tablayout"
             app:tabGravity="fill"
             app:tabMode="fixed"
-            app:tabIndicatorHeight="0dp"/>
+            app:tabIndicatorHeight="0dp"
+                />
 
 
 

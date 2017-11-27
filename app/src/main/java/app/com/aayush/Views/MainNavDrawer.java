@@ -20,7 +20,7 @@ public class MainNavDrawer extends NavDrawer{
     public MainNavDrawer(final BaseActivity baseActivity)
     {
         super(baseActivity);
-        addItem(new ActivityNavDrawerItem(MainActivity.class,"Inbox", R.drawable.ic_action_unread,R.id.include_main_nav_drawer_topitems));
+        addItem(new ActivityNavDrawerItem(MainActivity.class,"Home", R.drawable.ic_action_unread,R.id.include_main_nav_drawer_topitems));
 
         addItem(new BasicNavDrawerItem("Logout",R.drawable.ic_action_backspace,R.id.include_main_nav_drawer_bottomitems)
         {

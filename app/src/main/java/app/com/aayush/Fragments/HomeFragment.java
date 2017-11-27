@@ -36,16 +36,25 @@ public class HomeFragment extends BaseFragment implements TabLayout.OnTabSelecte
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_home,container,false);
+        //initialization
         this.view=view;
-        getCardTypeImages();
-
         mainActivity= (MainActivity) getActivity();
         tabLayout=view.findViewById(R.id.card_tablayout);
         viewPager=view.findViewById(R.id.card_viewpager);
+        //get images to list cardTypeImg
+        getCardTypeImages();
+        //setAdapter
         CardAdapter adapter=new CardAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+        //Design Tabs
+        createTabLayout();
+        tabLayout.addOnTabSelectedListener(this);
 
+        return view;
+    }
+
+    private void createTabLayout() {
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             linearLayout = (LinearLayout)
                     LayoutInflater.from(mainActivity).inflate(R.layout.card_tabs, tabLayout, false);
@@ -61,17 +70,13 @@ public class HomeFragment extends BaseFragment implements TabLayout.OnTabSelecte
             }
             else
                 cardselectToggle.setImageResource(R.mipmap.ic_toggle_button_off);
-            Log.e("lol","wtf");
             cardType.setImageResource(cardTypeImg.get(i));
             tab.setCustomView(linearLayout);
         }
-        tabLayout.addOnTabSelectedListener(this);
-
-        return view;
     }
 
     private void getCardTypeImages() {
-        int img[]={R.mipmap.ic_launcher_round,R.drawable.ic_water};
+        int img[]={R.drawable.ic_calorie,R.drawable.ic_water};
         for(int i=0;i<img.length;i++)
         {
             cardTypeImg.add(img[i]);

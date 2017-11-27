@@ -6,7 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.Toast;
 import app.com.aayush.R;
 import app.com.aayush.Views.MainNavDrawer;
 import app.com.aayush.Views.PageAdapter;
@@ -15,12 +15,14 @@ import app.com.aayush.Views.PageAdapter;
 public class MainActivity extends BaseAuthenticatedActivity
 {
     private ViewPager viewPager;
+    private int backCount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.include_toolbar);
         setSupportActionBar(toolbar);
+        backCount=0;
         setNavDrawer(new MainNavDrawer(this));
         PageAdapter adapter=new PageAdapter(getSupportFragmentManager());
         viewPager=(ViewPager)findViewById(R.id.pager);
@@ -28,26 +30,45 @@ public class MainActivity extends BaseAuthenticatedActivity
         TabLayout tabLayout=(TabLayout)findViewById(R.id.tab_layout);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
-       /* DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-    */
     }
-    /*@Override
+    @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        //TODO: wanna close app
+
+        if(backCount==0)
+        {
+            Toast.makeText(this,"Press Back Button to close the app",Toast.LENGTH_SHORT).show();
+            backCount++;
+            startThread();
+        }
+        else
+        {
+            finish();
         }
     }
-*/
+    void startThread()
+    {
+        new BackPressThread();
+    }
+    class BackPressThread implements Runnable
+    {
+        public BackPressThread()
+        {
+            Thread thread=new Thread(this);
+            thread.start();
+        }
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(5000);
+                backCount=0;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

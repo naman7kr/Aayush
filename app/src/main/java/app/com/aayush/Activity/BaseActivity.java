@@ -26,7 +26,6 @@ public class BaseActivity extends AppCompatActivity {
         application=(AayushApplication)getApplication();
         DisplayMetrics metrics=getResources().getDisplayMetrics();
         isTablet=(metrics.widthPixels/metrics.density)>=600;
-        Toast.makeText(getApplicationContext(),"Tab",Toast.LENGTH_SHORT).show();
     }
     public AayushApplication getYoraApplication()
     {
