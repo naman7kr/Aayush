@@ -13,10 +13,10 @@
         android:id="@+id/card_typeimg"
         />
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:layout_marginTop="3dp"
-
+        android:src="@mipmap/ic_toggle_button_on"
         android:id="@+id/card_togglebutton"
         />
 </LinearLayout>
