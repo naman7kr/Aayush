@@ -25,6 +25,7 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         application=(AayushApplication)getApplication();
         DisplayMetrics metrics=getResources().getDisplayMetrics();
+        //check if Tablet
         isTablet=(metrics.widthPixels/metrics.density)>=600;
     }
     public AayushApplication getYoraApplication()

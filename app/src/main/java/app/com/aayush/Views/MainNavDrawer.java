@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import app.com.aayush.Activity.BaseActivity;
 import app.com.aayush.Activity.MainActivity;
+import app.com.aayush.Activity.SettingsActivity;
 import app.com.aayush.R;
 
 /**
@@ -21,7 +22,7 @@ public class MainNavDrawer extends NavDrawer{
     {
         super(baseActivity);
         addItem(new ActivityNavDrawerItem(MainActivity.class,"Home", R.drawable.ic_action_unread,R.id.include_main_nav_drawer_topitems));
-
+        addItem(new ActivityNavDrawerItem(SettingsActivity.class,"Settings",R.drawable.ic_settings_black_24dp,R.id.include_main_nav_drawer_topitems));
         addItem(new BasicNavDrawerItem("Logout",R.drawable.ic_action_backspace,R.id.include_main_nav_drawer_bottomitems)
         {
             @Override
