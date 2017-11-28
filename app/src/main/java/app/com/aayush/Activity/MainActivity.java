@@ -11,10 +11,10 @@ import app.com.aayush.R;
 import app.com.aayush.Views.MainNavDrawer;
 import app.com.aayush.Views.PageAdapter;
 
-
 public class MainActivity extends BaseAuthenticatedActivity
 {
     private ViewPager viewPager;
+    private final int BACK_BUTTON_TIME=2500;
     private int backCount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class MainActivity extends BaseAuthenticatedActivity
         @Override
         public void run() {
             try {
-                Thread.sleep(5000);
+                Thread.sleep(BACK_BUTTON_TIME);
                 backCount=0;
             } catch (InterruptedException e) {
                 e.printStackTrace();
