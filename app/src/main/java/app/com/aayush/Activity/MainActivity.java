@@ -105,5 +105,4 @@ public class MainActivity extends BaseAuthenticatedActivity
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
-*/
+        app:srcCompat="@android:drawable/ic_dialog_email" />*/
