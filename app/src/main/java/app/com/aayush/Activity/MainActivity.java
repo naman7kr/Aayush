@@ -1,41 +1,67 @@
 package app.com.aayush.Activity;
 
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+
+import app.com.aayush.Fragments.MainAchievementFragment;
+import app.com.aayush.Fragments.MainHomeFragment;
+import app.com.aayush.Fragments.ProfileFragment;
 import app.com.aayush.R;
-import app.com.aayush.Views.MainNavDrawer;
-import app.com.aayush.Views.PageAdapter;
 
 public class MainActivity extends BaseAuthenticatedActivity
 {
     private ViewPager viewPager;
     private final int BACK_BUTTON_TIME=2500;
     private int backCount;
+    private AHBottomNavigation bottomNavigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bottomNavigation=findViewById(R.id.bottom_navigation);
+
+       bottomNavigation.addItem(new AHBottomNavigationItem("Home",R.drawable.ic_home_black_24dp));
+        bottomNavigation.addItem(new AHBottomNavigationItem("Achievements",R.drawable.ic_action_person));
+       bottomNavigation.addItem(new AHBottomNavigationItem("Profile",R.drawable.ic_action_camera));
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.include_toolbar);
         setSupportActionBar(toolbar);
-        backCount=0;
-        setNavDrawer(new MainNavDrawer(this));
-        PageAdapter adapter=new PageAdapter(getSupportFragmentManager());
-        viewPager=(ViewPager)findViewById(R.id.pager);
-        viewPager.setAdapter(adapter);
-        TabLayout tabLayout=(TabLayout)findViewById(R.id.tab_layout);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+        bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
 
+            public boolean onTabSelected(int position, boolean wasSelected) {
+                Fragment selectFragment=null;
+                if(position==0)
+                    selectFragment=new MainHomeFragment();
+                if(position==1)
+                    selectFragment=new MainAchievementFragment();
+                if(position==2)
+                    selectFragment=new ProfileFragment();
+                if(selectFragment!=null) {
+                    FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, selectFragment);
+                    transaction.commit();
+                    return true;
+                }
+                else
+                    return false;
+            }
+        });
+        bottomNavigation.setCurrentItem(0);
+        backCount=0;
     }
     @Override
     public void onBackPressed() {
-        //TODO: wanna close app
-
         if(backCount==0)
         {
             Toast.makeText(this,"Press Back Button to close the app",Toast.LENGTH_SHORT).show();
@@ -68,8 +94,6 @@ public class MainActivity extends BaseAuthenticatedActivity
             }
         }
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the nu; this adds items to the action bar if it is pres.
@@ -105,4 +129,5 @@ public class MainActivity extends BaseAuthenticatedActivity
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />*/
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+        */

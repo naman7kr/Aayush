@@ -6,9 +6,6 @@ import android.support.annotation.Nullable;
 
 import app.com.aayush.R;
 
-/**
- * Created by Stan on 11/28/2017.
- */
 
 public class SettingsActivity extends BaseAuthenticatedActivity{
     @Override
