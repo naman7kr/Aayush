@@ -4,8 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import app.com.aayush.Fragments.AchievementFragment;
-import app.com.aayush.Fragments.HomeFragment;
+import app.com.aayush.Fragments.MainAchievementFragment;
+import app.com.aayush.Fragments.MainHomeFragment;
+import app.com.aayush.Fragments.MainProfileFragment;
 
 public class PageAdapter extends FragmentPagerAdapter {
 
@@ -17,9 +18,11 @@ public class PageAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new HomeFragment();
+                return new MainHomeFragment();
             case 1:
-                return new AchievementFragment();
+                return new MainAchievementFragment();
+            case 2:
+                return new MainProfileFragment();
 
         }
         return null;
@@ -27,7 +30,7 @@ public class PageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
 }

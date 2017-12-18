@@ -1,42 +1,77 @@
 package app.com.aayush.Activity;
 
+
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 import app.com.aayush.R;
-import app.com.aayush.Views.MainNavDrawer;
 import app.com.aayush.Views.PageAdapter;
 
 public class MainActivity extends BaseAuthenticatedActivity
 {
 
-    private ViewPager viewPager;
     private final int BACK_BUTTON_TIME=2500;
     private int backCount;
+    private ViewPager viewPager;
+    BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.include_toolbar);
         setSupportActionBar(toolbar);
-        backCount=0;
-        setNavDrawer(new MainNavDrawer(this));
+        bottomNavigationView=findViewById(R.id.navigation);
+        viewPager=findViewById(R.id.viewpager);
         PageAdapter adapter=new PageAdapter(getSupportFragmentManager());
-        viewPager=(ViewPager)findViewById(R.id.pager);
         viewPager.setAdapter(adapter);
-        TabLayout tabLayout=(TabLayout)findViewById(R.id.tab_layout);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId())
+                {
+                    case R.id.main_home:
+                        viewPager.setCurrentItem(0);
+                        return true;
+                    case R.id.main_achievement:
+                        viewPager.setCurrentItem(1);
+                        return true;
+                    case R.id.main_profile:
+                        viewPager.setCurrentItem(2);
+                        return true;
+                }
+                return true;
+            }
+        });
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position==0)
+                bottomNavigationView.setSelectedItemId(R.id.main_home);
+                else if(position==1)
+                    bottomNavigationView.setSelectedItemId(R.id.main_achievement);
+                else
+                    bottomNavigationView.setSelectedItemId(R.id.main_profile);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        backCount=0;
     }
     @Override
     public void onBackPressed() {
-        //TODO: wanna close app
-
         if(backCount==0)
         {
             Toast.makeText(this,"Press Back Button to close the app",Toast.LENGTH_SHORT).show();
@@ -69,8 +104,6 @@ public class MainActivity extends BaseAuthenticatedActivity
             }
         }
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the nu; this adds items to the action bar if it is pres.
@@ -90,6 +123,7 @@ public class MainActivity extends BaseAuthenticatedActivity
         return super.onOptionsItemSelected(item);
     }
 }
+//TODO: Floating Action Bar
 /*
  FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -106,4 +140,5 @@ public class MainActivity extends BaseAuthenticatedActivity
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />*/
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+        */

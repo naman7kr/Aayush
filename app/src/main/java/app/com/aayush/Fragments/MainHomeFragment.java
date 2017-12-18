@@ -22,7 +22,7 @@ import app.com.aayush.Activity.MainActivity;
 import app.com.aayush.R;
 import app.com.aayush.Views.CardAdapter;
 
-public class HomeFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
+public class MainHomeFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private View view;

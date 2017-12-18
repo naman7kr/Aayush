@@ -13,9 +13,6 @@ import java.util.ArrayList;
 
 import app.com.aayush.R;
 
-/**
- * Created by Stan on 11/28/2017.
- */
 
 public class SettingsActivity extends BaseAuthenticatedActivity{
     private RecyclerView recyclerView;

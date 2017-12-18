@@ -10,14 +10,14 @@ import android.view.View;
 
 import app.com.aayush.Infrastructure.AayushApplication;
 import app.com.aayush.R;
-import app.com.aayush.Views.NavDrawer;
+
 import android.util.DisplayMetrics;
 import android.widget.Toast;
 
 public class BaseActivity extends AppCompatActivity {
 
     protected Toolbar toolbar;
-    protected NavDrawer navDrawer;
+
     protected AayushApplication application;
     protected boolean isTablet;
     @Override
@@ -41,38 +41,6 @@ public class BaseActivity extends AppCompatActivity {
         {
             setSupportActionBar(toolbar);
         }
-    }
-    protected void setNavDrawer(NavDrawer navDrawer)
-    {
-        this.navDrawer=navDrawer;
-        this.navDrawer.create();
-        overridePendingTransition(0,0);
-        View rootView=findViewById(android.R.id.content);
-        rootView.setAlpha(0);
-        rootView.animate().alpha(1).setDuration(450).start();
-    }
-    public void fadeOut(final FadeOutListener listener)
-    {
-        View rootView=findViewById(android.R.id.content);
-        rootView.animate()
-                .alpha(0)
-                .setListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animator) {
-                    }
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        listener.onFadeoutEnd();
-                    }
-                    @Override
-                    public void onAnimationCancel(Animator animator) {
-                    }
-                    @Override
-                    public void onAnimationRepeat(Animator animator) {
-                    }
-                })
-                .setDuration(150)
-                .start();
     }
     public Toolbar getToolbar()
     {
