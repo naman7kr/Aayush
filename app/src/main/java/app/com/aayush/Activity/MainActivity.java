@@ -1,63 +1,80 @@
 package app.com.aayush.Activity;
 
 
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
-
-import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
-import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
-
 import app.com.aayush.Fragments.MainAchievementFragment;
 import app.com.aayush.Fragments.MainHomeFragment;
-import app.com.aayush.Fragments.ProfileFragment;
+import app.com.aayush.Fragments.MainProfileFragment;
 import app.com.aayush.R;
+import app.com.aayush.Views.PageAdapter;
 
 public class MainActivity extends BaseAuthenticatedActivity
 {
-    private ViewPager viewPager;
+
     private final int BACK_BUTTON_TIME=2500;
     private int backCount;
-    private AHBottomNavigation bottomNavigation;
+    private ViewPager viewPager;
+    BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bottomNavigation=findViewById(R.id.bottom_navigation);
-
-       bottomNavigation.addItem(new AHBottomNavigationItem("Home",R.drawable.ic_home_black_24dp));
-        bottomNavigation.addItem(new AHBottomNavigationItem("Achievements",R.drawable.ic_action_person));
-       bottomNavigation.addItem(new AHBottomNavigationItem("Profile",R.drawable.ic_action_camera));
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.include_toolbar);
         setSupportActionBar(toolbar);
-        bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
-
-            public boolean onTabSelected(int position, boolean wasSelected) {
-                Fragment selectFragment=null;
-                if(position==0)
-                    selectFragment=new MainHomeFragment();
-                if(position==1)
-                    selectFragment=new MainAchievementFragment();
-                if(position==2)
-                    selectFragment=new ProfileFragment();
-                if(selectFragment!=null) {
-                    FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_layout, selectFragment);
-                    transaction.commit();
-                    return true;
+        bottomNavigationView=findViewById(R.id.navigation);
+        viewPager=findViewById(R.id.viewpager);
+        PageAdapter adapter=new PageAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId())
+                {
+                    case R.id.main_home:
+                        viewPager.setCurrentItem(0);
+                        return true;
+                    case R.id.main_achievement:
+                        viewPager.setCurrentItem(1);
+                        return true;
+                    case R.id.main_profile:
+                        viewPager.setCurrentItem(2);
+                        return true;
                 }
-                else
-                    return false;
+                return true;
             }
         });
-        bottomNavigation.setCurrentItem(0);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position==0)
+                bottomNavigationView.setSelectedItemId(R.id.main_home);
+                else if(position==1)
+                    bottomNavigationView.setSelectedItemId(R.id.main_achievement);
+                else
+                    bottomNavigationView.setSelectedItemId(R.id.main_profile);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         backCount=0;
     }
     @Override

@@ -9,7 +9,7 @@ import android.widget.Toolbar;
 
 import app.com.aayush.R;
 
-public class ProfileFragment extends BaseFragment {
+public class MainProfileFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_profile,container,false);
         Toolbar toolbar=view.findViewById(R.id.include_toolbar);
