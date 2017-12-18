@@ -3,19 +3,12 @@ package app.com.aayush.Activity;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
-import app.com.aayush.Fragments.MainAchievementFragment;
-import app.com.aayush.Fragments.MainHomeFragment;
-import app.com.aayush.Fragments.MainProfileFragment;
 import app.com.aayush.R;
 import app.com.aayush.Views.PageAdapter;
 
@@ -130,6 +123,7 @@ public class MainActivity extends BaseAuthenticatedActivity
         return super.onOptionsItemSelected(item);
     }
 }
+//TODO: Floating Action Bar
 /*
  FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
