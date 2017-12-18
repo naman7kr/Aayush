@@ -13,6 +13,7 @@ import app.com.aayush.Views.PageAdapter;
 
 public class MainActivity extends BaseAuthenticatedActivity
 {
+
     private ViewPager viewPager;
     private final int BACK_BUTTON_TIME=2500;
     private int backCount;
