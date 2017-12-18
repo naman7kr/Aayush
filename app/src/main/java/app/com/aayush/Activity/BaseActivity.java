@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 public class BaseActivity extends AppCompatActivity {
 
-    protected Toolbar toolbar;
-
     protected AayushApplication application;
     protected boolean isTablet;
     @Override
@@ -36,18 +34,6 @@ public class BaseActivity extends AppCompatActivity {
     public void setContentView(@LayoutRes int layoutResId)
     {
         super.setContentView(layoutResId);
-        toolbar=(Toolbar)findViewById(R.id.include_toolbar);
-        if(toolbar!=null)
-        {
-            setSupportActionBar(toolbar);
-        }
-    }
-    public Toolbar getToolbar()
-    {
-        return toolbar;
-    }
-    public interface FadeOutListener
-    {
-        void onFadeoutEnd();
+
     }
 }

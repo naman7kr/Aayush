@@ -5,7 +5,6 @@
     android:background="@color/colorPrimaryDark"
     app:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
     android:id="@+id/include_toolbar"
-
     >
 </android.support.v7.widget.Toolbar>
 
