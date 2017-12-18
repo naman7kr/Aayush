@@ -14,8 +14,7 @@
         <activity android:name=".Activity.LoginActivity"/>
         <activity
             android:name=".Activity.MainActivity"
-            android:label="@string/title_app"
-            >
+            android:label="@string/title_app">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +23,9 @@
         </activity>
         <activity android:name=".Activity.ProfileActivity"/>
         <activity android:name=".Activity.SettingsActivity"/>
-    </application>
+
+
+
+              </application>
 
 </manifest>
