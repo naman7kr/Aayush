@@ -18,7 +18,6 @@ import app.com.aayush.R;
 import app.com.aayush.Views.PageAdapter;
 
 public class MainActivity extends BaseAuthenticatedActivity {
-
     private final int BACK_BUTTON_TIME = 2500;
     private int backCount;
     private ViewPager viewPager;
@@ -131,7 +130,7 @@ public class MainActivity extends BaseAuthenticatedActivity {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
-        return true;
+        return false;
     }
 }
 //TODO: Floating Action Bar

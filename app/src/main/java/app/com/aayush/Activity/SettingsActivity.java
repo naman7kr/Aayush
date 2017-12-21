@@ -1,6 +1,5 @@
 package app.com.aayush.Activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import app.com.aayush.R;
-
 
 public class SettingsActivity extends BaseAuthenticatedActivity{
     private RecyclerView recyclerView;
@@ -85,7 +83,6 @@ public class SettingsActivity extends BaseAuthenticatedActivity{
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(this,MainActivity.class));
         finish();
     }
 
