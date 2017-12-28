@@ -12,6 +12,7 @@
         android:name=".Infrastructure.AayushApplication"
         >
         <activity android:name=".Activity.LoginActivity"/>
+        <activity android:name=".Activity.AddMealActivity"/>
         <activity
             android:name=".Activity.MainActivity"
             android:label="@string/title_app">
@@ -22,10 +23,5 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.SettingsActivity"/>
-
-
-
-
-              </application>
-
+    </application>
 </manifest>

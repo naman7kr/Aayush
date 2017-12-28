@@ -18,6 +18,8 @@ public class BaseActivity extends AppCompatActivity {
 
     protected AayushApplication application;
     protected boolean isTablet;
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,7 @@ public class BaseActivity extends AppCompatActivity {
         DisplayMetrics metrics=getResources().getDisplayMetrics();
         //check if Tablet
         isTablet=(metrics.widthPixels/metrics.density)>=600;
+        toolbar = findViewById(R.id.include_toolbar);
     }
     public AayushApplication getYoraApplication()
     {
@@ -36,4 +39,5 @@ public class BaseActivity extends AppCompatActivity {
         super.setContentView(layoutResId);
 
     }
+
 }

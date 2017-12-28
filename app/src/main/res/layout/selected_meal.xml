@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:elevation="5dp"
+    android:id="@+id/meal_selected_icon"
+    >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_burger"
+        android:background="@drawable/meal_border"
+        android:id="@+id/selected_meal_image"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Burger"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:background="#9E9E9E"
+        android:id="@+id/selected_meal_name"
+        />
+
+</LinearLayout>
