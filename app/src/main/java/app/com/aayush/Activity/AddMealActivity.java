@@ -3,24 +3,20 @@ package app.com.aayush.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import app.com.aayush.Infrastructure.Meal;
+import app.com.aayush.Modals.Meal;
 import app.com.aayush.R;
 import app.com.aayush.Views.ItemClicklistenerInterface;
 import app.com.aayush.Views.MealAdapter;
@@ -67,9 +63,20 @@ public class AddMealActivity extends BaseAuthenticatedActivity implements Adapte
 
             }
 
+            @Override
+            public void addItem(View v, int tag) {
+
+            }
+
+            @Override
+            public void removeItem(int tag) {
+
+            }
+
         }
         );
         mealListView.setAdapter(mealListAdapter);
+
     }
 
     private ArrayList<Meal> getList() {
