@@ -1,21 +1,25 @@
-package app.com.aayush.Infrastructure;
+package app.com.aayush.Modals;
 
 import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+
 /**
  * Created by Stan on 12/27/2017.
  */
 
-@SuppressLint("ParcelCreator")
+
 public class Meal implements Parcelable {
     private int mealImage;
     private String mealName;
 
-    public Meal(int mealImage, String mealName) {
-        this.mealImage = mealImage;
-        this.mealName = mealName;
+    public Meal() {
+    }
+
+    public Meal(int ic_bread, String a) {
+        mealImage=ic_bread;
+        mealName=a;
     }
 
     public void setMealImage(int mealImage) {
@@ -35,13 +39,14 @@ public class Meal implements Parcelable {
         return mealName;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
+    public void writeToParcel(Parcel dest, int flags) {
 
     }
 }
