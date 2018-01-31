@@ -2,22 +2,17 @@
 
 package app.com.aayush.Views;
 
-import android.content.Context;
-import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import app.com.aayush.Activity.AddMealActivity;
-import app.com.aayush.Infrastructure.Meal;
+import app.com.aayush.Modals.Meal;
 import app.com.aayush.R;
 
 
@@ -64,11 +59,10 @@ class MealListHolder extends RecyclerView.ViewHolder implements View.OnClickList
     protected TextView selectedMealName;
     protected ImageView selectedMealImage;
     protected LinearLayout selectedMealIcon;
-    private ItemClicklistenerInterface listener;
+
 
     public MealListHolder(View itemView,ItemClicklistenerInterface listener) {
         super(itemView);
-        this.listener=listener;
         selectedMealName=itemView.findViewById(R.id.selected_meal_name);
         selectedMealImage=itemView.findViewById(R.id.selected_meal_image);
         selectedMealIcon=itemView.findViewById(R.id.meal_selected_icon);
@@ -76,7 +70,7 @@ class MealListHolder extends RecyclerView.ViewHolder implements View.OnClickList
     }
     @Override
     public void onClick(View view) {
-        listener.onItemClick(view,getAdapterPosition());
+
     }
 }
 
@@ -101,7 +95,7 @@ class MealListHolder extends RecyclerView.ViewHolder implements View.OnClickList
 //import java.util.ArrayList;
 //
 //import app.com.aayush.Activity.AddMealActivity;
-//import app.com.aayush.Infrastructure.Meal;
+//import app.com.aayush.Modals.Meal;
 //import app.com.aayush.R;
 //
 //
