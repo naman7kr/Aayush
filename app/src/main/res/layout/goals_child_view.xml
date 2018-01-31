@@ -1,0 +1,26 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOLOLOLOLO"
+        android:id="@+id/goals_selected_item"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/goals_remove_item"
+        android:text="X"
+        android:textColor="@android:color/holo_red_dark"
+        android:textStyle="bold"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp"
+        />
+
+</RelativeLayout>
