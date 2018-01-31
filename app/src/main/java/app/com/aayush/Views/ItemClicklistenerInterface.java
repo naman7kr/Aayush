@@ -7,5 +7,7 @@ import android.view.View;
  */
 
 public interface ItemClicklistenerInterface {
-    public void onItemClick(View v, int position);
+    void onItemClick(View v, int position);
+    void addItem(View v, int tag);
+    void removeItem(int tag);
 }
