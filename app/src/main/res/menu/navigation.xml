@@ -3,14 +3,10 @@
     <item
 
         android:icon="@drawable/ic_home_black_24dp"
-        android:id="@+id/main_home"
-        android:title="Home"
+        android:id="@+id/main_goals"
+        android:title="Goals"
         />
-    <item
-        android:title="Achievement"
-        android:id="@+id/main_achievement"
-        android:icon="@drawable/ic_action_camera"
-        />
+
     <item
         android:title="Profile"
         android:id="@+id/main_profile"
