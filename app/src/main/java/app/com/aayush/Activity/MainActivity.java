@@ -1,19 +1,20 @@
 package app.com.aayush.Activity;
 
 
-import android.app.Fragment;
+
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import app.com.aayush.Fragments.MainProfileFragment;
+import app.com.aayush.Fragments.MainGoalsFragment;
 import app.com.aayush.R;
 import app.com.aayush.Views.PageAdapter;
 
@@ -35,18 +36,16 @@ public class MainActivity extends BaseAuthenticatedActivity {
         viewPager = findViewById(R.id.viewpager);
         PageAdapter adapter = new PageAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.main_home:
+                    case R.id.main_goals:
                         viewPager.setCurrentItem(0);
                         return true;
-                    case R.id.main_achievement:
-                        viewPager.setCurrentItem(1);
-                        return true;
                     case R.id.main_profile:
-                        viewPager.setCurrentItem(2);
+                        viewPager.setCurrentItem(1);
                         return true;
                 }
                 return true;
@@ -61,18 +60,14 @@ public class MainActivity extends BaseAuthenticatedActivity {
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
-                    bottomNavigationView.setSelectedItemId(R.id.main_home);
+                    bottomNavigationView.setSelectedItemId(R.id.main_goals);
                      toolbar.setVisibility(View.GONE);
-                } else if (position == 1) {
-                    bottomNavigationView.setSelectedItemId(R.id.main_achievement);
-                      toolbar.setVisibility(View.GONE);
-                } else {
+                }
+                if (position == 1) {
                     bottomNavigationView.setSelectedItemId(R.id.main_profile);
-                     toolbar.setVisibility(View.VISIBLE);
-
+                    toolbar.setVisibility(View.VISIBLE);
                 }
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
 
