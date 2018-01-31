@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import app.com.aayush.Infrastructure.Meal;
+import app.com.aayush.Modals.Meal;
 import app.com.aayush.R;
 
 
