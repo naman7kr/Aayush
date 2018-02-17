@@ -1,4 +1,4 @@
-package app.com.aayush.Views;
+package app.com.aayush.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
-
 import app.com.aayush.Modals.Meal;
 import app.com.aayush.R;
 

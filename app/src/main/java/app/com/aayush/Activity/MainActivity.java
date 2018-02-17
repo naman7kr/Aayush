@@ -8,15 +8,13 @@ import android.support.design.widget.BottomNavigationView;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import app.com.aayush.Fragments.MainGoalsFragment;
 import app.com.aayush.R;
-import app.com.aayush.Views.PageAdapter;
+import app.com.aayush.Adapters.PageAdapter;
 
 public class MainActivity extends BaseAuthenticatedActivity {
     private final int BACK_BUTTON_TIME = 2500;

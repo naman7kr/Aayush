@@ -1,4 +1,4 @@
-package app.com.aayush.Views;
+package app.com.aayush.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

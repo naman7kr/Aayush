@@ -48,18 +48,16 @@
             android:layout_gravity="center"
             android:textSize="20sp"
             />
-
-            <GridView
-                android:id="@+id/activity_addmeal_gridview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:columnWidth="90dp"
-                android:numColumns="auto_fit"
-                android:verticalSpacing="10dp"
-                android:horizontalSpacing="10dp"
-                android:stretchMode="columnWidth"
-                android:gravity="center"
-                />
+        <ScrollView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_meal_recview"
+            android:nestedScrollingEnabled="true"
+            />
+        </ScrollView>
     </LinearLayout>
 
 </LinearLayout>

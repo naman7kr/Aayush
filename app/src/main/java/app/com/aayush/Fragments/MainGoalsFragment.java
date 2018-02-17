@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.com.aayush.Activity.AddMealActivity;
+import app.com.aayush.Adapters.ItemClicklistenerInterface;
 import app.com.aayush.Modals.Categories;
 import app.com.aayush.R;
-import app.com.aayush.Views.GoalsAdapter;
-import app.com.aayush.Views.ItemClicklistenerInterface;
+import app.com.aayush.Adapters.GoalsAdapter;
 
 
 public class MainGoalsFragment extends BaseFragment {
@@ -65,5 +64,11 @@ public class MainGoalsFragment extends BaseFragment {
             catList.add(categories);
         }
         return catList;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 }

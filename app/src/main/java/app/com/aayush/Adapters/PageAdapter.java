@@ -1,4 +1,4 @@
-package app.com.aayush.Views;
+package app.com.aayush.Adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
