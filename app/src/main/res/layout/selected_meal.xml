@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -7,12 +10,13 @@
     android:elevation="5dp"
     android:id="@+id/meal_selected_icon"
     >
+
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:src="@drawable/ic_burger"
         android:background="@drawable/meal_border"
-        android:id="@+id/selected_meal_image"
+        android:id="@+id/meal_selected_image"
         />
     <TextView
         android:layout_width="match_parent"
@@ -22,7 +26,18 @@
         android:gravity="center"
         android:paddingBottom="5dp"
         android:background="#9E9E9E"
-        android:id="@+id/selected_meal_name"
+        android:id="@+id/meal_selected_name"
         />
 
 </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/meal_selected_icon"
+        android:text="X"
+        android:textSize="20sp"
+        android:id="@+id/meal_selected_remove"
+        />
+</RelativeLayout>

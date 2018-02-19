@@ -13,7 +13,8 @@ import android.os.Parcelable;
 public class Meal implements Parcelable {
     private int mealImage;
     private String mealName;
-
+    private int mealCalorie;
+    private int quantity;
     public Meal() {
     }
 
@@ -48,5 +49,21 @@ public class Meal implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
 
+    }
+
+    public int getMealCalorie() {
+        return mealCalorie;
+    }
+
+    public void setMealCalorie(int mealCalorie) {
+        this.mealCalorie = mealCalorie;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

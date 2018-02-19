@@ -38,8 +38,8 @@ public class AddMealItemAdapter extends ArrayAdapter<Meal> {
         Meal current=getItem(position);
         mealImage=view.findViewById(R.id.meal_image);
          mealName=view.findViewById(R.id.meal_name);
-
          mealImage.setImageResource(current.getMealImage());
+         mealImage.setTag(current.getMealImage());
         mealName.setText(current.getMealName());
         return view;
     }

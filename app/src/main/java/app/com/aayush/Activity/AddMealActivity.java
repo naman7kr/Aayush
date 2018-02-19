@@ -1,85 +1,167 @@
 package app.com.aayush.Activity;
 
-import android.content.Context;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
+
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.GridView;
-import android.widget.ImageView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+
+import android.view.View;
+import android.widget.LinearLayout;
+
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
+
 
 import app.com.aayush.Adapters.AddMealAdapter;
-import app.com.aayush.Adapters.ItemClicklistenerInterface;
-import app.com.aayush.Adapters.MealAdapter;
-
-import app.com.aayush.Modals.Categories;
+import app.com.aayush.Adapters.SelectedMealAdapter;
+import app.com.aayush.Fragments.ActivityCommunicationInterface;
+import app.com.aayush.Fragments.AddMealFragment;
+import app.com.aayush.Modals.Constants;
 import app.com.aayush.Modals.Meal;
 import app.com.aayush.R;
 
-public class AddMealActivity extends BaseAuthenticatedActivity  {
-    private GridView gridView;
-    private ArrayList<Meal> gridList = new ArrayList<>();
-    private ArrayList<Meal> mealList = new ArrayList<>();
-    private MealAdapter mealAdapter;
-    private RecyclerView mealListView;
-    private Context context;
-    private ImageView removeItem;
-    public ItemClicklistenerInterface listener;
-    private RecyclerView rView;
-    private List<Categories> catList;
+public class AddMealActivity extends BaseAuthenticatedActivity implements View.OnClickListener, ActivityCommunicationInterface {
+
+    private ViewPager viewCategories;
+    private static ArrayList<Meal>[] list = new ArrayList[1000];
+    private AddMealAdapter adapter;
+    private RecyclerView rSelMeal;
+    private ArrayList<Meal> selList=new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addmeal);
         setSupportActionBar(toolbar);
-
-        mealListView = findViewById(R.id.meal_list_view);
-        createListItems();
-    }
-
-    private void createListItems() {
-        rView=findViewById(R.id.add_meal_recview);
-        rView.setLayoutManager(new LinearLayoutManager(this));
-        AddMealAdapter amAdapter=new AddMealAdapter(this,getCategoriesList());
-        rView.setAdapter(amAdapter);
-    }
-
-    private List<Categories> getCategoriesList() {
-        catList=new ArrayList<>();
-        String catName[]={"Veg","Non-Veg","Fruits", "Vegetables", "Dairy Products", "Spices", "Oils", "Grains", "Pulses","Others"};
-        for(int i=0;i<catName.length;i++){
-            Categories categories=new Categories(catName[i]);
-            catList.add(categories);
+        for (int i = 0; i < 100; i++) {
+            list[i] = new ArrayList<>();
         }
-        return catList;
+        rSelMeal=findViewById(R.id.meal_selected_rview);
+        rSelMeal.setLayoutManager(new LinearLayoutManager(this, LinearLayout.HORIZONTAL,false));
+        SelectedMealAdapter smAdapter=new SelectedMealAdapter(this,getSelectedList());
+        rSelMeal.setAdapter(smAdapter);
+        viewCategories = findViewById(R.id.meal_categories_viewpager);
+
+        adapter = new AddMealAdapter(getSupportFragmentManager(), getList(0));
+        viewCategories.setAdapter(adapter);
+        categoriesChange();
     }
 
-//        gridList.add(new Meal(R.drawable.ic_bread, "Bread"));
-//        gridList.add(new Meal(R.drawable.ic_bread, "a"));
-//        gridList.add(new Meal(R.drawable.ic_bread, "b"));
-//        gridList.add(new Meal(R.drawable.ic_bread, "Samosa"));
-//        gridList.add(new Meal(R.drawable.ic_bread, "Chips"));
-//        gridList.add(new Meal(R.drawable.ic_bread, "Rice"));
-//        gridList.add(new Meal(R.drawable.ic_bread, "sadasdsadDaalfasfaf"));
-//        gridList.add(new Meal(R.drawable.ic_burger, "Burger"));
-//        gridList.add(new Meal(R.drawable.ic_bread, "Bread"));
-//        gridList.add(new Meal(R.drawable.ic_bread, "a"));
-//        gridList.add(new Meal(R.drawable.ic_bread, "b"));
-//        gridList.add(new Meal(R.drawable.ic_bread, "Samosa"));
-//        gridList.add(new Meal(R.drawable.ic_bread, "Chips"));
-//        gridList.add(new Meal(R.drawable.ic_bread, "Rice"));
-//        gridList.add(new Meal(R.drawable.ic_bread, "sadasdsadDaalfasfaf"));
-//        gridList.add(new Meal(R.drawable.ic_burger, "Burger"));
-//        Collections.sort(gridList, new Comparator<Meal>() {
-//            @Override
-//            public int compare(Meal lhs, Meal rhs) {
-//                return lhs.getMealName().compareTo(rhs.getMealName());
-//            }
-//        });
+    private ArrayList<Meal> getSelectedList() {
+            return selList;
+    }
+
+
+    private void categoriesChange() {
+        findViewById(R.id.veg).setOnClickListener(this);
+        findViewById(R.id.non_veg).setOnClickListener(this);
+        findViewById(R.id.fruits).setOnClickListener(this);
+        findViewById(R.id.dairy).setOnClickListener(this);
+        findViewById(R.id.spices).setOnClickListener(this);
+        findViewById(R.id.oils).setOnClickListener(this);
+        findViewById(R.id.grains).setOnClickListener(this);
+        findViewById(R.id.pulses).setOnClickListener(this);
+        findViewById(R.id.others).setOnClickListener(this);
+
+    }
+    @Override
+    public void transferData(Meal meal) {
+        Log.e("LOL", String.valueOf(meal.getQuantity()));
+        selList.add(meal);
+        rSelMeal.setAdapter(new SelectedMealAdapter(this,selList));
+    }
+    private ArrayList<Meal> getList(int position) {
+        list[position].clear();
+        int[] img = {R.drawable.ic_bread, R.drawable.ic_burger, R.drawable.ic_bread, R.drawable.ic_burger, R.drawable.ic_bread, R.drawable.ic_burger, R.drawable.ic_bread, R.drawable.ic_burger, R.drawable.ic_bread, R.drawable.ic_burger};
+        String[] name = {"Bread", "Burger", "Bread", "Burger", "Bread", "Burger", "Bread", "Burger", "Bread", "Burger"};
+        for (int i = 0; i < img.length; i++) {
+            Meal meal = new Meal();
+
+            meal.setMealName(name[i]);
+            meal.setMealImage(img[i]);
+
+            list[position].add(meal);
+        }
+
+        Collections.sort(list[position], new Comparator<Meal>() {
+            @Override
+            public int compare(Meal lhs, Meal rhs) {
+                return lhs.getMealName().compareTo(rhs.getMealName());
+            }
+        });
+        return list[position];
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.veg) {
+            ArrayList<Meal> list1;
+            list1 = getList(Constants.VEG_POS);
+            ((AddMealFragment) adapter.getItem(Constants.VEG_POS)).setList(list1);
+            viewCategories.setAdapter(new AddMealAdapter(getSupportFragmentManager(), list1));
+            viewCategories.setCurrentItem(Constants.VEG_POS);
+        }
+        if (v.getId() == R.id.non_veg) {
+            ArrayList<Meal> list1 = getList(Constants.NONVEG_POS);
+            ((AddMealFragment) adapter.getItem(Constants.NONVEG_POS)).setList(list1);
+            viewCategories.setAdapter(new AddMealAdapter(getSupportFragmentManager(), list1));
+            viewCategories.setCurrentItem(Constants.NONVEG_POS);
+        }
+        if (v.getId() == R.id.fruits) {
+
+            ArrayList<Meal> list1 = getList(Constants.FRUITS_POS);
+            ((AddMealFragment) adapter.getItem(Constants.FRUITS_POS)).setList(list1);
+            viewCategories.setAdapter(new AddMealAdapter(getSupportFragmentManager(), list1));
+            viewCategories.setCurrentItem(Constants.FRUITS_POS);
+
+        }
+        if (v.getId() == R.id.dairy) {
+            ArrayList<Meal> list1 = getList(Constants.DAIRY_POS);
+            ((AddMealFragment) adapter.getItem(Constants.DAIRY_POS)).setList(list1);
+            viewCategories.setAdapter(new AddMealAdapter(getSupportFragmentManager(), list1));
+            viewCategories.setCurrentItem(Constants.DAIRY_POS);
+        }
+        if (v.getId() == R.id.spices) {
+            ArrayList<Meal> list1 = getList(Constants.SPICES_POS);
+            ((AddMealFragment) adapter.getItem(Constants.SPICES_POS)).setList(list1);
+            viewCategories.setAdapter(new AddMealAdapter(getSupportFragmentManager(), list1));
+            viewCategories.setCurrentItem(Constants.SPICES_POS);
+        }
+        if (v.getId() == R.id.oils) {
+            ArrayList<Meal> list1 = getList(Constants.OILS_POS);
+            ((AddMealFragment) adapter.getItem(Constants.OILS_POS)).setList(list1);
+            viewCategories.setAdapter(new AddMealAdapter(getSupportFragmentManager(), list1));
+            viewCategories.setCurrentItem(Constants.OILS_POS);
+        }
+        if (v.getId() == R.id.grains) {
+            ArrayList<Meal> list1 = getList(Constants.GRAINS_POS);
+            ((AddMealFragment) adapter.getItem(Constants.GRAINS_POS)).setList(list1);
+            viewCategories.setAdapter(new AddMealAdapter(getSupportFragmentManager(), list1));
+            viewCategories.setCurrentItem(Constants.GRAINS_POS);
+        }
+        if (v.getId() == R.id.pulses) {
+            ArrayList<Meal> list1 = getList(Constants.PULSES_POS);
+            ((AddMealFragment) adapter.getItem(Constants.PULSES_POS)).setList(list1);
+            viewCategories.setAdapter(new AddMealAdapter(getSupportFragmentManager(), list1));
+            viewCategories.setCurrentItem(Constants.PULSES_POS);
+        }
+        if (v.getId() == R.id.others) {
+            ArrayList<Meal> list1 = getList(Constants.OTHERS_POS);
+            ((AddMealFragment) adapter.getItem(Constants.OTHERS_POS)).setList(list1);
+            viewCategories.setAdapter(new AddMealAdapter(getSupportFragmentManager(), list1));
+            viewCategories.setCurrentItem(Constants.OTHERS_POS);
+        }
+    }
+
+
+}
 //        gridView = findViewById(R.id.activity_addmeal_gridview);
 //        mealAdapter = new MealAdapter(this, getList());
 //        gridView.setAdapter(mealAdapter);
@@ -152,7 +234,7 @@ public class AddMealActivity extends BaseAuthenticatedActivity  {
 //            outRect.right = mSpaceWidth;
 //        }
 //    }
-}
+
 
 
 
