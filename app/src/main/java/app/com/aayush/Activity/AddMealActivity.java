@@ -79,13 +79,12 @@ public class AddMealActivity extends BaseAuthenticatedActivity implements View.O
     }
     private ArrayList<Meal> getList(int position) {
         list[position].clear();
-        int[] img = {R.drawable.ic_bread, R.drawable.ic_burger, R.drawable.ic_bread, R.drawable.ic_burger, R.drawable.ic_bread, R.drawable.ic_burger, R.drawable.ic_bread, R.drawable.ic_burger, R.drawable.ic_bread, R.drawable.ic_burger};
-        String[] name = {"Bread", "Burger", "Bread", "Burger", "Bread", "Burger", "Bread", "Burger", "Bread", "Burger"};
-        for (int i = 0; i < img.length; i++) {
+
+        for (int i = 0; i < Constants.getMealListAt(position).getMealsName().length; i++) {
             Meal meal = new Meal();
 
-            meal.setMealName(name[i]);
-            meal.setMealImage(img[i]);
+            meal.setMealName(Constants.getMealListAt(position).getMealsName()[i]);
+            meal.setMealImage(Constants.getMealListAt(position).getMealsImage()[i]);
 
             list[position].add(meal);
         }
